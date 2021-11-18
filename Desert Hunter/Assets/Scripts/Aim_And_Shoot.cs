@@ -38,7 +38,6 @@ public class Aim_And_Shoot : MonoBehaviour
         if(!IsBlading)
             ADS();
         ShootBlade();
-        Debug.Log(Blade.transform.rotation.z);
     }
     
     private void ADS(){

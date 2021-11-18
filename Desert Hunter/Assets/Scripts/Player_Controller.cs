@@ -10,6 +10,7 @@ public class Player_Controller : MonoBehaviour
     public float RotationSmoothTime = 1f;
     public float SpeedChangeRate = 10.0f;
     public float MouseSensitivity = 300f;
+    public float DistToGround = .25f;
 
     public bool RotateOnMoveDirection = true;
 
@@ -18,6 +19,7 @@ public class Player_Controller : MonoBehaviour
     public CinemachineVirtualCamera AimCamera;
 
     private float _speed;
+    private float _gravity = 0.0f;
     private float _targetSpeed;
     private float _targetClamp;
     private float _animationBlend;
@@ -29,6 +31,7 @@ public class Player_Controller : MonoBehaviour
     private float _cameraNoise;
     private float _negYclamp;
     private float _posYclamp;
+    private bool _isGrounded;
 
     private CharacterController _controller;
     private Animator _animator;
@@ -45,16 +48,27 @@ public class Player_Controller : MonoBehaviour
     }
     void Update()
     {
+        if(!GetComponent<Aim_And_Shoot>().IsBlading)
+            Gravity();
         if(!GetComponent<Aim_And_Shoot>().IsBlading && !GetComponent<Aim_And_Shoot>().IsAiming)
             Move();
+
         FollowCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = _cameraNoise;
     }
     void LateUpdate(){
         if(!GetComponent<Aim_And_Shoot>().IsBlading)
             RotateCamera();
     }
-
-    public void Move(){
+    
+    private bool GroundCheck(){
+        return Physics.Raycast(transform.position, -Vector3.up, DistToGround);
+    }
+    private void Gravity(){
+        _gravity -= 9.18f * Time.deltaTime;
+        if(GroundCheck())
+            _gravity = 0;
+    }
+    private void Move(){
         float input_x = Input.GetAxis("Horizontal");
         float input_y = Input.GetAxis("Vertical");
         Vector3 inputDirection = new Vector3(input_x, 0.0f, input_y).normalized;
@@ -101,7 +115,10 @@ public class Player_Controller : MonoBehaviour
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
         // move the player
-        _controller.Move(targetDirection.normalized * _speed * Time.deltaTime);
+        targetDirection = new Vector3 (targetDirection.x * _speed, _gravity, targetDirection.z * _speed);
+        Debug.Log("Gravity: " + targetDirection.y);
+        _controller.Move(targetDirection * Time.deltaTime);
+
         _animator.SetFloat("Speed", _animationBlend);
         float inputMagnitude = inputDirection.magnitude;
         if(inputMagnitude > 0)
