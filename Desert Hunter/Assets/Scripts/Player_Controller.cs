@@ -50,6 +50,7 @@ public class Player_Controller : MonoBehaviour
     {
         if(!GetComponent<Aim_And_Shoot>().IsBlading)
             Gravity();
+        
         if(!GetComponent<Aim_And_Shoot>().IsBlading && !GetComponent<Aim_And_Shoot>().IsAiming)
             Move();
 
@@ -116,7 +117,6 @@ public class Player_Controller : MonoBehaviour
 
         // move the player
         targetDirection = new Vector3 (targetDirection.x * _speed, _gravity, targetDirection.z * _speed);
-        Debug.Log("Gravity: " + targetDirection.y);
         _controller.Move(targetDirection * Time.deltaTime);
 
         _animator.SetFloat("Speed", _animationBlend);
@@ -128,18 +128,21 @@ public class Player_Controller : MonoBehaviour
     }
 
     private void RotateCamera(){
-        if(!FindObjectOfType<Aim_And_Shoot>().IsBlading)
-            _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * MouseSensitivity;
-		_cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * MouseSensitivity;
+        float _targetSensitivity;
+        if(!FindObjectOfType<Aim_And_Shoot>().IsBlading) _targetSensitivity = MouseSensitivity;
+        else _targetSensitivity = FindObjectOfType<Aim_And_Shoot>().BladeSensitivity;
+
+        _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * _targetSensitivity;
+		_cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * _targetSensitivity;
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
         if(!FindObjectOfType<Aim_And_Shoot>().IsAiming && !FindObjectOfType<Aim_And_Shoot>().IsBlading){
-		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -15.0f, 50.0f);
+		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -20.0f, 50.0f);
             _negYclamp = -15.0f;
             _posYclamp = 50.0f;
         }else if(!FindObjectOfType<Aim_And_Shoot>().IsBlading){
-            _cinemachineTargetPitch = Mathf.Lerp(_cinemachineTargetPitch, 0.0f, Time.deltaTime * 17f);
-            _posYclamp = Mathf.Lerp(_posYclamp, 0.0f, Time.deltaTime * 17f);
-            _negYclamp = Mathf.Lerp(_negYclamp, 0.0f, Time.deltaTime * 17f);
+            //_cinemachineTargetPitch = Mathf.Lerp(_cinemachineTargetPitch, 0.0f, Time.deltaTime * 17f);
+            //_posYclamp = Mathf.Lerp(_posYclamp, 0.0f, Time.deltaTime * 17f);
+            //_negYclamp = Mathf.Lerp(_negYclamp, 0.0f, Time.deltaTime * 17f);
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _negYclamp, _posYclamp);
         }
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
