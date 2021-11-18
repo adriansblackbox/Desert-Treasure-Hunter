@@ -104,10 +104,11 @@ public class Aim_And_Shoot : MonoBehaviour
         Blade.transform.Rotate(rotation);
     }
     private void BladeForm(){
-         if(_bladeTimer > 0){
+        if(_bladeTimer > 0){
             _targetSpeed = Mathf.Lerp(_targetSpeed, BladeSpeed, Time.deltaTime);
             this.gameObject.GetComponent<CharacterController>().Move(transform.forward.normalized * BladeSpeed * Time.deltaTime);
             _bladeTimer -= Time.deltaTime;
+            if(Input.GetKeyDown(KeyCode.Mouse0)) _bladeTimer = 0;
         }else if(IsBlading){
             _targetSpeed = 0;
             // Temporary representation of the blade form
