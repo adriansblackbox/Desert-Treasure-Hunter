@@ -56,7 +56,7 @@ public class Player_Controller : MonoBehaviour
         FollowCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = _cameraNoise;
     }
     void LateUpdate(){
-        if(!GetComponent<Aim_And_Shoot>().IsBlading)
+        //if(!GetComponent<Aim_And_Shoot>().IsBlading)
             RotateCamera();
     }
     
@@ -128,14 +128,15 @@ public class Player_Controller : MonoBehaviour
     }
 
     private void RotateCamera(){
-        _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * MouseSensitivity;
+        if(!FindObjectOfType<Aim_And_Shoot>().IsBlading)
+            _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * MouseSensitivity;
 		_cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * MouseSensitivity;
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-        if(!FindObjectOfType<Aim_And_Shoot>().IsAiming){
+        if(!FindObjectOfType<Aim_And_Shoot>().IsAiming && !FindObjectOfType<Aim_And_Shoot>().IsBlading){
 		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -15.0f, 50.0f);
             _negYclamp = -15.0f;
             _posYclamp = 50.0f;
-        }else{
+        }else if(!FindObjectOfType<Aim_And_Shoot>().IsBlading){
             _cinemachineTargetPitch = Mathf.Lerp(_cinemachineTargetPitch, 0.0f, Time.deltaTime * 17f);
             _posYclamp = Mathf.Lerp(_posYclamp, 0.0f, Time.deltaTime * 17f);
             _negYclamp = Mathf.Lerp(_negYclamp, 0.0f, Time.deltaTime * 17f);

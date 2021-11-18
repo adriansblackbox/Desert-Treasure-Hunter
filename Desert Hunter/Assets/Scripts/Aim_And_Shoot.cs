@@ -75,13 +75,13 @@ public class Aim_And_Shoot : MonoBehaviour
             AimCamera.gameObject.SetActive(false);
             Crosshair.SetActive(false);
             _bladeTimer = BladeTime;
-            _chargeTime = 1f;
+            _chargeTime = 0.5f;
         }
 
         //Temporary charge time. Replace with 'when animation is finished playing'
         if(_chargeTime > 0f){
             _chargeTime -= Time.deltaTime;
-            _landTime = 1f;
+            _landTime = 0.25f;
         }else if(IsBlading){
             // Temporary representation of the blade form
             RotateBladeInAir();
