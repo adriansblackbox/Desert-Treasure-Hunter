@@ -36,8 +36,9 @@ public class Aim_And_Shoot : MonoBehaviour
     }
 
     private void Update(){
-        if(!IsBlading){
+        if(!IsBlading && GetComponent<CharacterController>().isGrounded)
             ADS();
+        if(!IsBlading){
             Blade.GetComponent<MeshCollider>().enabled = false;
             this.gameObject.layer = LayerMask.NameToLayer("Player");
         }else{
@@ -56,13 +57,13 @@ public class Aim_And_Shoot : MonoBehaviour
             GetComponent<Player_Controller>().RotateOnMoveDirection = false;
             GetComponent<Player_Controller>().MouseSensitivity = AimSensitivity;
         }
-        if(Input.GetKey(KeyCode.Mouse1)){
+        if(Input.GetKey(KeyCode.Mouse1) && IsAiming){
             // Player rotates to look at aim direction
             Vector3 _aimDirection = new Vector3(FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.forward.x,0f,FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.forward.z);
             transform.forward = Vector3.Lerp(transform.forward, _aimDirection, Time.deltaTime * 15f);
 
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 1f, Time.deltaTime * SpeedChangeRate));
-            RotateBlade();
+            //RotateBlade();
             ShootBlade();
         }else{
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * SpeedChangeRate));

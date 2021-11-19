@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.5, y: 0.5, z: 1}
+  Damping: {x: 0.1, y: 0.1, z: 1}
   ShoulderOffset: {x: 0.5, y: -0.4, z: 0}
   VerticalArmLength: 0.5
   CameraSide: 0.5
@@ -455,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189794571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.07, y: -8.660002, z: -30.4}
+  m_LocalPosition: {x: -30.21, y: 20.9, z: -30.4}
   m_LocalScale: {x: 19.402107, y: 39.36172, z: 1}
   m_Children: []
   m_Father: {fileID: 440663017}
@@ -1966,6 +1966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705986385}
   - component: {fileID: 705986386}
+  - component: {fileID: 705986387}
   m_Layer: 3
   m_Name: Follow Player
   m_TagString: Untagged
@@ -2006,7 +2007,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 1945619037}
   m_Follow: {fileID: 1945619037}
   m_Lens:
     FieldOfView: 40
@@ -2023,6 +2024,36 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 690181382}
+--- !u!114 &705986387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705986384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &712627047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793200724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.37, y: -8.660002, z: -30.4}
+  m_LocalPosition: {x: -30, y: -19.99, z: -30.4}
   m_LocalScale: {x: 19.402107, y: 39.36172, z: 1}
   m_Children: []
   m_Father: {fileID: 440663017}
@@ -5607,13 +5638,14 @@ MonoBehaviour:
   JogSpeed: 5
   RotationSmoothTime: 0.15
   SpeedChangeRate: 8
-  MouseSensitivity: 200
+  MouseSensitivity: 300
   DistToGround: 100
   RotateOnMoveDirection: 1
   CinemachineCameraTarget: {fileID: 1945619036}
   GroundChecker: {fileID: 23170765}
   FollowCamera: {fileID: 705986386}
   AimCamera: {fileID: 1297439766}
+  _gravity: 0
 --- !u!114 &919132148322181333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5628,10 +5660,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bladeTimer: 0
   SpeedChangeRate: 10
-  AimSensitivity: 50
-  BladeSensitivity: 150
-  BladeSpeed: 10
-  BladeTime: 4
+  AimSensitivity: 200
+  BladeSensitivity: 500
+  BladeSpeed: 15
+  BladeTime: 1.5
   BladeRotateSpeed: 80
   IsBlading: 0
   IsAiming: 0

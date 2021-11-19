@@ -20,7 +20,7 @@ public class Player_Controller : MonoBehaviour
     public CinemachineVirtualCamera AimCamera;
 
     private float _speed;
-    private float _gravity = 0.0f;
+    public float _gravity = 0.0f;
     private float _targetSpeed;
     private float _targetClamp;
     private float _animationBlend;
@@ -62,8 +62,9 @@ public class Player_Controller : MonoBehaviour
     }
     private void Gravity(){
         _gravity -= 9.18f * Time.deltaTime;
+        Debug.Log(_controller.isGrounded);
         if(_controller.isGrounded)
-            _gravity = 0;
+            _gravity = -9.18f * Time.deltaTime;
     }
     private void Move(){
         float input_x = Input.GetAxis("Horizontal");
@@ -132,8 +133,8 @@ public class Player_Controller : MonoBehaviour
 		_cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * _targetSensitivity;
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
         if(!FindObjectOfType<Aim_And_Shoot>().IsAiming && !FindObjectOfType<Aim_And_Shoot>().IsBlading){
-		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -20.0f, 50.0f);
-            _negYclamp = -15.0f;
+		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
+            _negYclamp = -50.0f;
             _posYclamp = 50.0f;
         }else if(!FindObjectOfType<Aim_And_Shoot>().IsBlading){
             //_cinemachineTargetPitch = Mathf.Lerp(_cinemachineTargetPitch, 0.0f, Time.deltaTime * 17f);
