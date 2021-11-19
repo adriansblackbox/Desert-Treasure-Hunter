@@ -15,6 +15,7 @@ public class Player_Controller : MonoBehaviour
     public bool RotateOnMoveDirection = true;
 
     public GameObject CinemachineCameraTarget;
+    public Transform GroundChecker;
     public CinemachineVirtualCamera FollowCamera;
     public CinemachineVirtualCamera AimCamera;
 
@@ -31,7 +32,6 @@ public class Player_Controller : MonoBehaviour
     private float _cameraNoise;
     private float _negYclamp;
     private float _posYclamp;
-    private bool _isGrounded;
 
     private CharacterController _controller;
     private Animator _animator;
@@ -60,13 +60,9 @@ public class Player_Controller : MonoBehaviour
         //if(!GetComponent<Aim_And_Shoot>().IsBlading)
             RotateCamera();
     }
-    
-    private bool GroundCheck(){
-        return Physics.Raycast(transform.position, -Vector3.up, DistToGround);
-    }
     private void Gravity(){
         _gravity -= 9.18f * Time.deltaTime;
-        if(GroundCheck())
+        if(_controller.isGrounded)
             _gravity = 0;
     }
     private void Move(){
