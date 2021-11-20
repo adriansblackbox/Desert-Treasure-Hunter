@@ -59,13 +59,8 @@ public class Blade_Controller : MonoBehaviour
         }
     }
     private void RotateBlade(){
-        //if(Mathf.Abs(transform.rotation.y) < Mathf.Abs(FollowRoot.transform.rotation.y) + .01f){
-            SafeToRotate = true;
-        //}else{
-           // SafeToRotate = false;
-        //}
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.rotation, 1f);
-        FollowRoot.transform.rotation = Quaternion.RotateTowards( FollowRoot.transform.rotation, transform.rotation, Time.deltaTime * 180f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.rotation, Time.deltaTime * 120f);
+        FollowRoot.transform.rotation = Quaternion.RotateTowards( FollowRoot.transform.rotation, FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.rotation, Time.deltaTime * 100f);
     }
     private void BladeMovement(){
         //transform.rotation = FollowRoot.transform.rotation;
