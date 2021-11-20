@@ -62,7 +62,6 @@ public class Player_Controller : MonoBehaviour
     }
     private void Gravity(){
         _gravity -= 9.18f * Time.deltaTime;
-        Debug.Log(_controller.isGrounded);
         if(_controller.isGrounded)
             _gravity = -9.18f * Time.deltaTime;
     }
@@ -132,15 +131,13 @@ public class Player_Controller : MonoBehaviour
         _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * _targetSensitivity;
 		_cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * _targetSensitivity;
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+
         if(!FindObjectOfType<Aim_And_Shoot>().IsAiming && !FindObjectOfType<Aim_And_Shoot>().IsBlading){
 		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
-            _negYclamp = -50.0f;
-            _posYclamp = 50.0f;
         }else if(!FindObjectOfType<Aim_And_Shoot>().IsBlading){
-            //_cinemachineTargetPitch = Mathf.Lerp(_cinemachineTargetPitch, 0.0f, Time.deltaTime * 17f);
-            //_posYclamp = Mathf.Lerp(_posYclamp, 0.0f, Time.deltaTime * 17f);
-            //_negYclamp = Mathf.Lerp(_negYclamp, 0.0f, Time.deltaTime * 17f);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _negYclamp, _posYclamp);
+             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
+        }else{
+             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
         }
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
     }
