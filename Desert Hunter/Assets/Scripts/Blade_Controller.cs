@@ -83,7 +83,7 @@ public class Blade_Controller : MonoBehaviour
        _bladePitch = ClampAngle(_bladePitch, -50.0f, 50.0f);
 
         transform.rotation = Quaternion.Euler(_bladePitch, _baldeYaw, 0.0f);
-        FollowRoot.transform.rotation = Quaternion.RotateTowards( FollowRoot.transform.rotation, transform.rotation, Time.deltaTime * 100f);
+        FollowRoot.transform.rotation = Quaternion.RotateTowards( FollowRoot.transform.rotation, transform.rotation, Time.deltaTime * 50f);
     }
     private void BladeMovement(){
         //transform.rotation = FollowRoot.transform.rotation;
