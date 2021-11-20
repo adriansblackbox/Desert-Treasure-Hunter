@@ -27,8 +27,8 @@ public class Player_Controller : MonoBehaviour
     private float _targetRotation = 0.0f;
     private float _rotationVelocity;
     private float _verticalVelocity;
-    private float _cinemachineTargetYaw;
-	private float _cinemachineTargetPitch;
+    public float _cinemachineTargetYaw;
+	public float _cinemachineTargetPitch;
     private float _cameraNoise;
     private float _negYclamp;
     private float _posYclamp;
@@ -125,21 +125,16 @@ public class Player_Controller : MonoBehaviour
 
     private void RotateCamera(){
         float _targetSensitivity;
-        if(!FindObjectOfType<Aim_And_Shoot>().IsBlading) _targetSensitivity = MouseSensitivity;
-        else _targetSensitivity = FindObjectOfType<Aim_And_Shoot>().BladeSensitivity;
+        _targetSensitivity = FindObjectOfType<Aim_And_Shoot>().BladeSensitivity;
 
-        _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * _targetSensitivity;
-		_cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * _targetSensitivity;
-        _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-
-        if(!FindObjectOfType<Aim_And_Shoot>().IsAiming && !FindObjectOfType<Aim_And_Shoot>().IsBlading){
-		    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
-        }else if(!FindObjectOfType<Aim_And_Shoot>().IsBlading){
-             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
-        }else{
-             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
+        if(!FindObjectOfType<Aim_And_Shoot>().IsBlading){
+            _targetSensitivity = MouseSensitivity;
+            _cinemachineTargetYaw += Input.GetAxisRaw("Mouse X") * Time.deltaTime * _targetSensitivity;
+            _cinemachineTargetPitch += -1 * Input.GetAxisRaw("Mouse Y") * Time.deltaTime * _targetSensitivity;
+            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, -50.0f, 50.0f);
+            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
         }
-        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
     }
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
