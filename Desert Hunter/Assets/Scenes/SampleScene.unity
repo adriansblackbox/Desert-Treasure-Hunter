@@ -7118,9 +7118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chargeTime: 0
-  BladeSpeed: 20
   _landTime: 0
   _bladeTimer: 0
+  BladeSpeed: 10
+  BladeRotationSmoothing: 10
   FollowRoot: {fileID: 8470188935728925056}
   Player: {fileID: 919132148322181330}
 --- !u!54 &8470188934795989475

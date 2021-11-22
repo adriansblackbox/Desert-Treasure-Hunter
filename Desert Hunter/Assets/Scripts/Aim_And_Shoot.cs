@@ -7,6 +7,7 @@ public class Aim_And_Shoot : MonoBehaviour
 {
     private float _defaultSensitivity;
     private Animator _animator;
+    private Player_Controller _playerController;
 
     public float SpeedChangeRate = 10f;
     public float AimSensitivity = 50f;
@@ -22,7 +23,8 @@ public class Aim_And_Shoot : MonoBehaviour
     
     private void Start() {
         // creating default sensitivity to reset to original sensitivity after aiming
-        _defaultSensitivity = GetComponent<Player_Controller>().MouseSensitivity;
+        _playerController = GetComponent<Player_Controller>();
+        _defaultSensitivity = _playerController.MouseSensitivity;
         _animator = GetComponent<Animator>();
     }
     private void Update(){
@@ -57,7 +59,7 @@ public class Aim_And_Shoot : MonoBehaviour
         //===================================================================
         if(Input.GetKey(KeyCode.Mouse1) && IsAiming){
             // Player rotates to look at aim direction
-            Vector3 _aimDirection = new Vector3(FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.forward.x,0f,FindObjectOfType<Player_Controller>().CinemachineCameraTarget.transform.forward.z);
+            Vector3 _aimDirection = new Vector3(_playerController.CinemachineCameraTarget.transform.forward.x,0f,_playerController.CinemachineCameraTarget.transform.forward.z);
             transform.forward = Vector3.Lerp(transform.forward, _aimDirection, Time.deltaTime * 15f);
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 1f, Time.deltaTime * SpeedChangeRate));
         }else{
