@@ -28,7 +28,7 @@ MonoBehaviour:
     m_To: Follow Player
     m_Blend:
       m_Style: 6
-      m_Time: 0.25
+      m_Time: 0.4
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
