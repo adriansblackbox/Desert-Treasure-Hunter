@@ -83,7 +83,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.112927966, y: 0.59038085, z: -0.08414343, w: 0.7946344}
     speed: 2
-    m_Value: {x: 0.11293778, y: 0.59043217, z: -0.08415075, w: 0.7947035}
+    m_Value: {x: 0.11292797, y: 0.59038085, z: -0.08414344, w: 0.7946344}
   m_Size:
     m_Target: 10
     speed: 2
@@ -1158,9 +1158,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c4510000
-    m_LastClickedID: 20932
-    m_ExpandedIDs: 00000000885100008a5100008c5100008e510000905100009251000094510000
+    m_SelectedIDs: e4510000
+    m_LastClickedID: 20964
+    m_ExpandedIDs: 00000000d4510000d6510000d8510000da510000dc510000de510000e0510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1188,7 +1188,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000885100008a5100008c5100008e510000905100009251000094510000
+    m_ExpandedIDs: 00000000d4510000d6510000d8510000da510000dc510000de510000e0510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
