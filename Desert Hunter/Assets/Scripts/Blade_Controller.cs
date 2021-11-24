@@ -16,6 +16,7 @@ public class Blade_Controller : MonoBehaviour
     public float _chargeTime = 0f;
     public float _landTime = 0f;
     public float _bladeTimer = 0f;
+    public float RespawnYoffset = 1f;
     public float BladeSpeed = 20f;
     public float BladeRotationSmoothing = 5f;
     public GameObject FollowRoot;
@@ -33,6 +34,7 @@ public class Blade_Controller : MonoBehaviour
         //rotate the balde different ways depending if the player is in balde form
         if(_shootScript.IsBlading){
             RotateBlade();
+            BladeForm();
             // while the player is invisible, adjust the character's rotation and the
             // follow camera root of the player to match what the blade is facing
             _playerController.CinemachineCameraTarget.transform.rotation = transform.rotation;
@@ -48,14 +50,9 @@ public class Blade_Controller : MonoBehaviour
             _bladePitchLerped = _bladePitch;
             _baldeYawLerped = _baldeYaw;
             FollowRoot.transform.rotation = transform.rotation;
-        }
-
-        // enter blade form only if given the signal from the aim and shoot script
-        if(_shootScript.IsBlading) BladeForm();
-        else{
-            // make sure to reset our balde components to be still and exact
-            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+             this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             FollowRoot.transform.rotation = transform.rotation;
+            Player.GetComponent<CharacterController>().height = Mathf.Lerp(Player.GetComponent<CharacterController>().height, 1.8f, Time.deltaTime * 20f);
         }
     }
     public void BladeForm(){
@@ -64,20 +61,23 @@ public class Blade_Controller : MonoBehaviour
         //=======================================================================
         if(_chargeTime > 0f){
            _chargeTime -= Time.deltaTime;
-           _landTime = 1f;
+           _landTime = 0.2f;
            _mesh.enabled = true;
         //=======================================================================
         // 2nd phase: Blade time. This is where the player can move as a blade
         //=======================================================================
         }else if(_bladeTimer > 0){
-         _shootScript.PlayerGeo.SetActive(false);
+            _shootScript.PlayerGeo.SetActive(false);
             _bladeTimer -= Time.deltaTime;
-            if(Input.GetKeyDown(KeyCode.Mouse0)) _bladeTimer = 0;
             GetComponent<MeshCollider>().enabled = true;
             GetComponent<CharacterController>().Move(transform.forward.normalized * BladeSpeed * Time.deltaTime);
-            Player.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+            //The player character moves with the blade while invisible
+            Player.transform.position = new Vector3(transform.position.x, transform.position.y - RespawnYoffset, transform.position.z);
+            if(Input.GetKeyDown(KeyCode.Mouse0)) _bladeTimer = 0;
+            //A fix for the player falling though the floor
+            Player.GetComponent<CharacterController>().height = 0f;
         //=======================================================================
-        // 3rd phase: once the player has tan out of blade time, we reset the
+        // 3rd phase: once the player has ran out of blade time, we reset the
         // player visibilty and dissapear the balde.
          //=======================================================================
         }else{
@@ -87,10 +87,11 @@ public class Blade_Controller : MonoBehaviour
             _shootScript.PlayerGeo.SetActive(true);
             _shootScript.AimCamera.gameObject.SetActive(false);
             _shootScript.BladeCamera.gameObject.SetActive(false);
-
             // locks tplayer movement for a fixed amount of time before they can
             // move again out of blade state
-            if(_landTime > 0f) _landTime -= Time.deltaTime;
+            if(_landTime > 0f){ 
+                _landTime -= Time.deltaTime;
+            }
             else{
                 _playerController.RotateOnMoveDirection = true;
                 _shootScript.IsBlading = false;
