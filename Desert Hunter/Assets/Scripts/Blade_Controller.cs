@@ -8,14 +8,15 @@ public class Blade_Controller : MonoBehaviour
     private float _bladePitch;
     private float _baldeYawLerped;
     private float _bladePitchLerped;
+    private float t;
     private CharacterController _controller;
     private MeshRenderer _mesh;
     private Aim_And_Shoot _shootScript;
     private Player_Controller _playerController;
 
-    public float _chargeTime = 0f;
-    public float _landTime = 0f;
-    public float _bladeTimer = 0f;
+    public float ChargeTime = 0.5f;
+    public float LandTime = 0.2f;
+    public float BladeTime = 5.0f;
     public float RespawnYoffset = 1f;
     public float BladeSpeed = 20f;
     public float BladeRotationSmoothing = 5f;
@@ -50,53 +51,48 @@ public class Blade_Controller : MonoBehaviour
             _bladePitchLerped = _bladePitch;
             _baldeYawLerped = _baldeYaw;
             FollowRoot.transform.rotation = transform.rotation;
-             this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             FollowRoot.transform.rotation = transform.rotation;
             Player.GetComponent<CharacterController>().height = Mathf.Lerp(Player.GetComponent<CharacterController>().height, 1.8f, Time.deltaTime * 20f);
         }
     }
-    public void BladeForm(){
+    IEnumerator BladeForm(){
         //=======================================================================
         // 1st phase: Charge up time. No movement unitl charge timer has depleted
         //=======================================================================
-        if(_chargeTime > 0f){
-           _chargeTime -= Time.deltaTime;
-           _landTime = 0.2f;
-           _mesh.enabled = true;
+        _mesh.enabled = true;
+        yield return new WaitForSeconds(ChargeTime);
         //=======================================================================
         // 2nd phase: Blade time. This is where the player can move as a blade
         //=======================================================================
-        }else if(_bladeTimer > 0){
+        for(t = 0.0f; t < BladeTime; t += Time.deltaTime){
             _shootScript.PlayerGeo.SetActive(false);
-            _bladeTimer -= Time.deltaTime;
             GetComponent<MeshCollider>().enabled = true;
             GetComponent<CharacterController>().Move(transform.forward.normalized * BladeSpeed * Time.deltaTime);
             //The player character moves with the blade while invisible
             Player.transform.position = new Vector3(transform.position.x, transform.position.y - RespawnYoffset, transform.position.z);
-            if(Input.GetKeyDown(KeyCode.Mouse0)) _bladeTimer = 0;
             //A fix for the player falling though the floor
             Player.GetComponent<CharacterController>().height = 0f;
+            // if the player clicks the shoot button again, they cancel balde time
+            if(Input.GetKeyDown(KeyCode.Mouse0)) t = BladeTime;
+            yield return null;
+        }
         //=======================================================================
         // 3rd phase: once the player has ran out of blade time, we reset the
         // player visibilty and dissapear the balde.
-         //=======================================================================
-        }else{
-            GetComponent<MeshCollider>().enabled = false;
-            GetComponent<CharacterController>().Move(Vector3.zero);
-            _mesh.enabled = false;
-            _shootScript.PlayerGeo.SetActive(true);
-            _shootScript.AimCamera.gameObject.SetActive(false);
-            _shootScript.BladeCamera.gameObject.SetActive(false);
-            // locks tplayer movement for a fixed amount of time before they can
-            // move again out of blade state
-            if(_landTime > 0f){ 
-                _landTime -= Time.deltaTime;
-            }
-            else{
-                _playerController.RotateOnMoveDirection = true;
-                _shootScript.IsBlading = false;
-            }
-        }
+        //=======================================================================
+        GetComponent<MeshCollider>().enabled = false;
+        GetComponent<CharacterController>().Move(Vector3.zero);
+        _mesh.enabled = false;
+        _shootScript.PlayerGeo.SetActive(true);
+        _shootScript.AimCamera.gameObject.SetActive(false);
+        _shootScript.BladeCamera.gameObject.SetActive(false);
+        // locks tplayer movement for a fixed amount of time before they can
+        // move again out of blade state
+        yield return new WaitForSeconds(LandTime);
+        _playerController.RotateOnMoveDirection = true;
+        _shootScript.IsBlading = false;
+        yield return null;
     }
     private void RotateBlade(){
         // grabs the vertical and horizontal input of the player; however,
@@ -126,7 +122,7 @@ public class Blade_Controller : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.layer == 9 || other.gameObject.layer == 10){
-            _bladeTimer = 0f;
+            t = BladeTime;
         }
     }
 }

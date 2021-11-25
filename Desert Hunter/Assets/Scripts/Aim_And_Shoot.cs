@@ -12,7 +12,6 @@ public class Aim_And_Shoot : MonoBehaviour
 
     public float SpeedChangeRate = 10f;
     public float AimSensitivity = 50f;
-    public float BladeTime = 3f;
     public bool IsBlading = false;
     public bool IsAiming = false;
     public CinemachineVirtualCamera AimCamera;
@@ -72,7 +71,7 @@ public class Aim_And_Shoot : MonoBehaviour
             // Revert to default player camera when not aiming
             //_animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * SpeedChangeRate));
             GetComponent<Player_Controller>().RotateOnMoveDirection = true;
-             GetComponent<Player_Controller>().MouseSensitivity = _defaultSensitivity;
+            GetComponent<Player_Controller>().MouseSensitivity = _defaultSensitivity;
             AimCamera.gameObject.SetActive(false);
             IsAiming = false;
             Crosshair.SetActive(false);
@@ -82,12 +81,11 @@ public class Aim_And_Shoot : MonoBehaviour
         if(IsAiming && Input.GetKeyDown(KeyCode.Mouse0) && !IsBlading){
             IsAiming = false;
             IsBlading = true;
+            FindObjectOfType<Blade_Controller>().StartCoroutine("BladeForm");
             // Switch to blade camera 
             BladeCamera.gameObject.SetActive(true);
             AimCamera.gameObject.SetActive(false);
             Crosshair.SetActive(false);
-            FindObjectOfType<Blade_Controller>()._bladeTimer = BladeTime;
-            FindObjectOfType<Blade_Controller>()._chargeTime = 0.5f;
         }
     }
 
