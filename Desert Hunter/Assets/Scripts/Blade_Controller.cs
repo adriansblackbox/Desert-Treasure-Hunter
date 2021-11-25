@@ -35,7 +35,6 @@ public class Blade_Controller : MonoBehaviour
         //rotate the balde different ways depending if the player is in balde form
         if(_shootScript.IsBlading){
             RotateBlade();
-            BladeForm();
             // while the player is invisible, adjust the character's rotation and the
             // follow camera root of the player to match what the blade is facing
             _playerController.CinemachineCameraTarget.transform.rotation = transform.rotation;
