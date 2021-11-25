@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class Aim_And_Shoot : MonoBehaviour
 {
+    private bool _closeToWall = false;
     private float _defaultSensitivity;
     private Animator _animator;
     private Player_Controller _playerController;
@@ -39,14 +40,13 @@ public class Aim_And_Shoot : MonoBehaviour
         }else{
             this.gameObject.layer = 7;
         }
-
         ShootBlade();
     }  
     private void ADS(){
         //===================================================================
         // Aim state 1: Once Aim button has been pressed
         //===================================================================
-        if(Input.GetKeyDown(KeyCode.Mouse1)){
+        if(Input.GetKeyDown(KeyCode.Mouse1) && !_closeToWall){
             // Sensitivity, crosshair, and camera are adjusted when aiming
             AimCamera.gameObject.SetActive(true);
             Crosshair.SetActive(true);
@@ -88,6 +88,19 @@ public class Aim_And_Shoot : MonoBehaviour
             Crosshair.SetActive(false);
             FindObjectOfType<Blade_Controller>()._bladeTimer = BladeTime;
             FindObjectOfType<Blade_Controller>()._chargeTime = 0.5f;
+        }
+    }
+
+    // boolean _closeToWall prevents player from aiming when too close to anything that is
+    // under the wall layer
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.layer == 9){
+            _closeToWall = true;
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+         if(other.gameObject.layer == 9){
+            _closeToWall = false;
         }
     }
 }

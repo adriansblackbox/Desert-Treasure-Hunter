@@ -125,7 +125,7 @@ public class Blade_Controller : MonoBehaviour
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.layer == 0){
+        if(other.gameObject.layer == 9 || other.gameObject.layer == 10){
             _bladeTimer = 0f;
         }
     }
