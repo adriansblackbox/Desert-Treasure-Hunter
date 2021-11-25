@@ -1189,7 +1189,7 @@ Transform:
   - {fileID: 1297439767}
   - {fileID: 935477886}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &340116852
 GameObject:
@@ -1419,7 +1419,7 @@ Transform:
   - {fileID: 994583774}
   - {fileID: 1471544013}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &533359222
 PrefabInstance:
@@ -1430,7 +1430,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 061f68d3c7a552849a0fe29dd778bf52, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 061f68d3c7a552849a0fe29dd778bf52, type: 3}
       propertyPath: m_LocalScale.x
@@ -1937,7 +1937,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 83.375, y: -30, z: 0}
 --- !u!1 &705986384
 GameObject:
@@ -3562,7 +3562,7 @@ Transform:
   - {fileID: 2143396400}
   - {fileID: 1675974766}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1329500581
 GameObject:
@@ -4295,7 +4295,7 @@ RectTransform:
   m_Children:
   - {fileID: 238504954}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5444,7 +5444,7 @@ Transform:
   - {fileID: 23170765}
   - {fileID: 933797272}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &571070863381605700
 Transform:
@@ -5627,7 +5627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpeedChangeRate: 10
   AimSensitivity: 200
-  BladeTime: 10
   IsBlading: 0
   IsAiming: 0
   AimCamera: {fileID: 1297439766}
@@ -7529,9 +7528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0a010f4fccbd048964f575490bc49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chargeTime: 0
-  _landTime: 0
-  _bladeTimer: 0
+  ChargeTime: 0.5
+  LandTime: 0.2
+  BladeTime: 5
   RespawnYoffset: 1
   BladeSpeed: 10
   BladeRotationSmoothing: 10
@@ -7642,7 +7641,7 @@ Transform:
   m_LocalScale: {x: 1.2621503, y: 0.015561116, z: 1.2621503}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &8470188934795989487
 MeshFilter:
@@ -7680,7 +7679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.017438794, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8486438011831497021
 GameObject:
