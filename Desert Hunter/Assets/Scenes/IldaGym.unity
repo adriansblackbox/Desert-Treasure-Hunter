@@ -5627,7 +5627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpeedChangeRate: 10
   AimSensitivity: 200
-  BladeTime: 10
   IsBlading: 0
   IsAiming: 0
   AimCamera: {fileID: 1297439766}
@@ -7529,9 +7528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0a010f4fccbd048964f575490bc49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chargeTime: 0
-  _landTime: 0
-  _bladeTimer: 0
+  ChargeTime: 0.5
+  LandTime: 0.2
+  BladeTime: 5
   RespawnYoffset: 1
   BladeSpeed: 10
   BladeRotationSmoothing: 10
