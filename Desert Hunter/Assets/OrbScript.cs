@@ -9,8 +9,7 @@ public class OrbScript : MonoBehaviour
         _bladeScript = FindObjectOfType<Blade_Controller>();
     }
     private void Update() {
-        // Here, we would check if the level is reset by player death.
-        // In that case, we renable the meshrenderer and the collider.s
+        
     }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Blade")){
@@ -18,5 +17,9 @@ public class OrbScript : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
         }
+    }
+    public void Reset() {
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
 }

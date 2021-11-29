@@ -16,6 +16,7 @@ public class Player_Controller : MonoBehaviour
     public GameObject CinemachineCameraTarget;
     public CinemachineVirtualCamera FollowCamera;
     public CinemachineVirtualCamera AimCamera;
+    public GameObject lastCheckpoint;
 
     private float _speed;
     public float _gravity = 0.0f;
@@ -51,6 +52,9 @@ public class Player_Controller : MonoBehaviour
             Move();
         // Getting noise of the follow camera to adust dependant on movement state (run or idle)
         FollowCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = _cameraNoise;
+
+        // Kills the player
+        if (transform.position.y < 3) Reset();
     }
     // Rotate camera logic on late update since the camera follow is on late update as well
     void LateUpdate(){RotateCamera();}
@@ -121,5 +125,10 @@ public class Player_Controller : MonoBehaviour
         if (lfAngle < -360f) lfAngle += 360f;
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
+    }
+
+    public void Reset() {
+        transform.position = lastCheckpoint.transform.position;
+        lastCheckpoint.GetComponent<CheckpointScript>().Reset();
     }
 }
