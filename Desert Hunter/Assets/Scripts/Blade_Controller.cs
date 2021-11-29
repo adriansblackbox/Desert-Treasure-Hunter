@@ -8,7 +8,7 @@ public class Blade_Controller : MonoBehaviour
     private float _bladePitch;
     private float _baldeYawLerped;
     private float _bladePitchLerped;
-    private float t;
+    public float t;
     private CharacterController _controller;
     private MeshRenderer _mesh;
     private Aim_And_Shoot _shootScript;
