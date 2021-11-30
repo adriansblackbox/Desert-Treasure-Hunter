@@ -186,7 +186,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3b49a3f6de25a8f4b93759bc7f68db57, type: 2}
+      objectReference: {fileID: 2100000, guid: 591cbb84a6ee99441a048d2ddff0cf94, type: 2}
     - target: {fileID: 919132149155446097, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Name
       value: RockWall 1 (203)
@@ -420,7 +420,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6f8a6d20a3e057d4e8eda8e26e5850ef, type: 2}
+      objectReference: {fileID: 2100000, guid: 591cbb84a6ee99441a048d2ddff0cf94, type: 2}
     - target: {fileID: 919132149155446097, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Name
       value: RockWall 1 (180)
@@ -654,7 +654,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b4adc24a42bbfa649b2dbb61d947f993, type: 2}
+      objectReference: {fileID: 2100000, guid: 6f8a6d20a3e057d4e8eda8e26e5850ef, type: 2}
     - target: {fileID: 919132149155446097, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Name
       value: RockWall 1 (167)
@@ -732,7 +732,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b4adc24a42bbfa649b2dbb61d947f993, type: 2}
+      objectReference: {fileID: 2100000, guid: 591cbb84a6ee99441a048d2ddff0cf94, type: 2}
     - target: {fileID: 919132149155446097, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Name
       value: RockWall 1 (185)
@@ -966,7 +966,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b4adc24a42bbfa649b2dbb61d947f993, type: 2}
+      objectReference: {fileID: 2100000, guid: 6f8a6d20a3e057d4e8eda8e26e5850ef, type: 2}
     - target: {fileID: 919132149155446097, guid: b61b23b71a06e434588b6283a4d20136, type: 3}
       propertyPath: m_Name
       value: RockWall 1 (173)
