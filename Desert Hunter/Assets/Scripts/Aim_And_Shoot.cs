@@ -14,18 +14,23 @@ public class Aim_And_Shoot : MonoBehaviour
     public float AimSensitivity = 50f;
     public bool IsBlading = false;
     public bool IsAiming = false;
+    private bool tutorial = true;
     public CinemachineVirtualCamera AimCamera;
     public CinemachineVirtualCamera BladeCamera;
     public GameObject Crosshair;
     public GameObject Blade;
     public GameObject BladeStart;
     public GameObject PlayerGeo;
-    
+    private GameObject _mainCamera;
+
+    private void Awake() { _mainCamera = GameObject.FindGameObjectWithTag("MainCamera"); }
     private void Start() {
         // creating default sensitivity to reset to original sensitivity after aiming
         _playerController = GetComponent<Player_Controller>();
         _defaultSensitivity = _playerController.MouseSensitivity;
         _animator = GetComponent<Animator>();
+        _mainCamera.transform.Find("Canvas").Find("HoldRight").gameObject.SetActive(true);
+        _mainCamera.transform.Find("Canvas").Find("PressLeft").gameObject.SetActive(false);
     }
     private void Update(){
         // if the player is both not blading and is grounded, then we allow the player to aim
@@ -52,6 +57,7 @@ public class Aim_And_Shoot : MonoBehaviour
             IsAiming = true;
             GetComponent<Player_Controller>().RotateOnMoveDirection = false;
             GetComponent<Player_Controller>().MouseSensitivity = AimSensitivity;
+            if (tutorial) _mainCamera.transform.Find("Canvas").Find("PressLeft").gameObject.SetActive(true);
         }
         //===================================================================
         // Aim state 2: while the player is still holding the aim button down
@@ -75,6 +81,7 @@ public class Aim_And_Shoot : MonoBehaviour
             AimCamera.gameObject.SetActive(false);
             IsAiming = false;
             Crosshair.SetActive(false);
+            if (tutorial) _mainCamera.transform.Find("Canvas").Find("PressLeft").gameObject.SetActive(false);
         }
     }
     private void ShootBlade(){
@@ -86,6 +93,11 @@ public class Aim_And_Shoot : MonoBehaviour
             BladeCamera.gameObject.SetActive(true);
             AimCamera.gameObject.SetActive(false);
             Crosshair.SetActive(false);
+            if (tutorial) {
+                tutorial = false;
+                _mainCamera.transform.Find("Canvas").Find("HoldRight").gameObject.SetActive(false);
+                _mainCamera.transform.Find("Canvas").Find("PressLeft").gameObject.SetActive(false);
+            }
         }
     }
 
