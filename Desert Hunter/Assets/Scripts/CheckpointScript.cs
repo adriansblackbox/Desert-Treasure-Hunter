@@ -20,7 +20,7 @@ public class CheckpointScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Blade")) {
+        if (other.gameObject.CompareTag("Blade") || other.gameObject.CompareTag("Player")) {
             player.GetComponent<Player_Controller>().lastCheckpoint = gameObject;
         }
     }

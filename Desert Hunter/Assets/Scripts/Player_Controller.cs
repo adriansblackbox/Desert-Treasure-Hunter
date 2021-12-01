@@ -52,13 +52,6 @@ public class Player_Controller : MonoBehaviour
             Move();
         // Getting noise of the follow camera to adust dependant on movement state (run or idle)
         FollowCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = _cameraNoise;
-
-        // Kills the player
-        //if (transform.position.y < 3) {
-        //    Reset();
-        //    StartCoroutine(_mainCamera.GetComponentInChildren<Fader>().Fade(this));
-        //    this.enabled = false;
-        //}
     }
     // Rotate camera logic on late update since the camera follow is on late update as well
     void LateUpdate(){RotateCamera();}
@@ -134,5 +127,7 @@ public class Player_Controller : MonoBehaviour
     public void Reset() {
         transform.position = lastCheckpoint.transform.position;
         lastCheckpoint.GetComponent<CheckpointScript>().Reset();
+        StartCoroutine(_mainCamera.GetComponentInChildren<Fader>().Fade(this));
+        this.enabled = false;
     }
 }
