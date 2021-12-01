@@ -54,11 +54,11 @@ public class Player_Controller : MonoBehaviour
         FollowCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = _cameraNoise;
 
         // Kills the player
-        if (transform.position.y < 3) {
-            Reset();
-            StartCoroutine(_mainCamera.GetComponentInChildren<Fader>().Fade(this));
-            this.enabled = false;
-        }
+        //if (transform.position.y < 3) {
+        //    Reset();
+        //    StartCoroutine(_mainCamera.GetComponentInChildren<Fader>().Fade(this));
+        //    this.enabled = false;
+        //}
     }
     // Rotate camera logic on late update since the camera follow is on late update as well
     void LateUpdate(){RotateCamera();}

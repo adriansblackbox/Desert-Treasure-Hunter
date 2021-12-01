@@ -28,7 +28,6 @@ public class RopeScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Blade")) {
-            _bladeScript.t = 0.0f;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
 
