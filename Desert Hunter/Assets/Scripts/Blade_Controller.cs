@@ -10,7 +10,6 @@ public class Blade_Controller : MonoBehaviour
     private float _bladePitchLerped;
     public float t;
     private CharacterController _controller;
-    private MeshRenderer _mesh;
     private Aim_And_Shoot _shootScript;
     private Player_Controller _playerController;
 
@@ -23,10 +22,12 @@ public class Blade_Controller : MonoBehaviour
     public GameObject FollowRoot;
     public GameObject Player;
     public GameObject PlayerAmeture;
+    public Transform BladeTransfrom;
+    public MeshRenderer BladeMesh;
+    public MeshCollider BladeCollider;
 
     private void Start() {
         _controller = GetComponent<CharacterController>();
-        _mesh = GetComponent<MeshRenderer>();
         _shootScript = Player.GetComponent<Aim_And_Shoot>();
         _playerController = Player.GetComponent<Player_Controller>();
     }
@@ -60,13 +61,14 @@ public class Blade_Controller : MonoBehaviour
         //=======================================================================
         // 1st phase: Charge up time. No movement unitl charge timer has depleted
         //=======================================================================
-        _mesh.enabled = true;
+        BladeMesh.enabled = true;
         yield return new WaitForSeconds(ChargeTime);
         //=======================================================================
         // 2nd phase: Blade time. This is where the player can move as a blade
         //=======================================================================
         for(t = 0.0f; t < BladeTime; t += Time.deltaTime){
-            GetComponent<MeshCollider>().enabled = true;
+            BladeTransfrom.Rotate(0.0f, 10f, 0.0f);
+            BladeCollider.enabled = true;
             PlayerAmeture.SetActive(false);
             GetComponent<CharacterController>().Move(transform.forward.normalized * BladeSpeed * Time.deltaTime);
             //The player character moves with the blade while invisible
@@ -81,9 +83,9 @@ public class Blade_Controller : MonoBehaviour
         // 3rd phase: once the player has ran out of blade time, we reset the
         // player visibilty and dissapear the balde.
         //=======================================================================
-        GetComponent<MeshCollider>().enabled = false;
+       BladeCollider.enabled = false;
         GetComponent<CharacterController>().Move(Vector3.zero);
-        _mesh.enabled = false;
+        BladeMesh.enabled = false;
         PlayerAmeture.SetActive(true);
         _shootScript.AimCamera.gameObject.SetActive(false);
         _shootScript.BladeCamera.gameObject.SetActive(false);
