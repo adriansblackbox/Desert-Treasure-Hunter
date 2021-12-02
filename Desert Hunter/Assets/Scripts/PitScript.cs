@@ -20,6 +20,7 @@ public class PitScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Blade") || other.gameObject.CompareTag("Player")) {
+            FindObjectOfType<Blade_Controller>().t = FindObjectOfType<Blade_Controller>().BladeTime;
             player.GetComponent<Player_Controller>().Reset();
         }
     }

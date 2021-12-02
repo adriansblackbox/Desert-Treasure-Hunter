@@ -26,9 +26,11 @@ public class CheckpointScript : MonoBehaviour
     }
 
     public void Reset() {
-        for (int i = 0; i < resetables.Length; i++) {
-            if (resetables[i].GetComponent<OrbScript>() != null) resetables[i].GetComponent<OrbScript>().Reset();
-            if (resetables[i].GetComponent<RopeScript>() != null) resetables[i].GetComponent<RopeScript>().Reset();
+        if(resetables != null){
+            for (int i = 0; i < resetables.Length; i++) {
+                if (resetables[i].GetComponent<OrbScript>() != null) resetables[i].GetComponent<OrbScript>().Reset();
+                if (resetables[i].GetComponent<RopeScript>() != null) resetables[i].GetComponent<RopeScript>().Reset();
+            }
         }
     }
 }

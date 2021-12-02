@@ -25,6 +25,7 @@ public class Blade_Controller : MonoBehaviour
     public Transform BladeTransfrom;
     public MeshRenderer BladeMesh;
     public MeshCollider BladeCollider;
+    public Rigidbody BladeRB;
 
     private void Start() {
         _controller = GetComponent<CharacterController>();
@@ -34,6 +35,7 @@ public class Blade_Controller : MonoBehaviour
     private void Update() {
         // Keep follow root for blade camera at the location of the balde
         FollowRoot.transform.position = transform.position;
+        BladeTransfrom.position = transform.position;
         //rotate the balde different ways depending if the player is in balde form
         if(_shootScript.IsBlading){
             RotateBlade();
@@ -52,7 +54,7 @@ public class Blade_Controller : MonoBehaviour
             _bladePitchLerped = _bladePitch;
             _baldeYawLerped = _baldeYaw;
             FollowRoot.transform.rotation = transform.rotation;
-            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            BladeRB.velocity = Vector3.zero;
             FollowRoot.transform.rotation = transform.rotation;
             Player.GetComponent<CharacterController>().height = Mathf.Lerp(Player.GetComponent<CharacterController>().height, 6.56f, Time.deltaTime * 20f);
         }
