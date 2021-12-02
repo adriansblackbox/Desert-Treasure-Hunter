@@ -19,7 +19,7 @@ MonoBehaviour:
       x: 183
       y: -696
       width: 2051
-      height: 2112
+      height: 2208
     contents:
     - model: {fileID: 8926484042661614598}
       id: 1
@@ -75,10 +75,10 @@ MonoBehaviour:
   - title: Beam
     position:
       serializedVersion: 2
-      x: 2351
-      y: -767
-      width: 982
-      height: 1472
+      x: 2190
+      y: -766
+      width: 1143
+      height: 1475
     contents:
     - model: {fileID: 8926484042661615028}
       id: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     x: 183
     y: -1190
     width: 4918
-    height: 2703
+    height: 2702
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: OrbEffect
+  m_Name: OrbEffect2
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.220734640955925,"g":0.9245283007621765,"b":0.0,"a":0.0}'
+      m_SerializableObject: '{"r":1.0,"g":0.03529411554336548,"b":0.4008115530014038,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -233,7 +233,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.760051429271698,"g":0.8396226167678833,"b":0.0,"a":0.0}'
+      m_SerializableObject: '{"r":0.4792700707912445,"g":0.8301886916160584,"b":0.28665006160736086,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -250,7 +250,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrbEffect
+  m_Name: OrbEffect2
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -386,7 +386,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614599}
       inputSlot: {fileID: 8926484042661614747}
-    position: {x: 230, y: 1043}
+    position: {x: 230, y: 1042.8}
     expandedSlots: []
     expanded: 0
   - m_Id: 2
@@ -395,7 +395,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614754}
     - outputSlot: {fileID: 8926484042661614599}
       inputSlot: {fileID: 8926484042661614758}
-    position: {x: 1119, y: 869}
+    position: {x: 1118.8, y: 868.8}
     expandedSlots: []
     expanded: 0
   - m_Id: 3
@@ -4949,14 +4949,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614825}
       inputSlot: {fileID: 8926484042661615063}
-    position: {x: 2376, y: 63}
-    expandedSlots: []
-    expanded: 0
-  - m_Id: 1
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614825}
-      inputSlot: {fileID: 8926484042661615151}
-    position: {x: 4303, y: 860}
+    position: {x: 2215.2, y: 167.6}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614825
@@ -4988,7 +4981,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.220734640955925,"g":0.9245283007621765,"b":0.0,"a":0.0}'
+      m_SerializableObject: '{"r":1.0,"g":0.03529411554336548,"b":0.4008115530014038,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o
@@ -4998,7 +4991,6 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661615063}
-  - {fileID: 8926484042661615151}
 --- !u!114 &8926484042661614826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6482,7 +6474,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1.11
+      m_SerializableObject: -0.4
     m_Space: 2147483647
   m_Property:
     name: b
@@ -9255,8 +9247,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661614825}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661615152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11905,9 +11896,9 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615232}
       inputSlot: {fileID: 8926484042661615227}
-    position: {x: 518.427, y: 226.60986}
+    position: {x: 386.8, y: 175.6}
     expandedSlots: []
-    expanded: 0
+    expanded: 1
 --- !u!114 &8926484042661615232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11937,7 +11928,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.760051429271698,"g":0.8396226167678833,"b":0.0,"a":0.0}'
+      m_SerializableObject: '{"r":0.4792700707912445,"g":0.8301886916160584,"b":0.28665006160736086,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o
