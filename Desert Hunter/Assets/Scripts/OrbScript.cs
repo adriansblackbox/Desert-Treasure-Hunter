@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityEditor.VFX;
-using UnityEditor.VFX.UI;
+//using UnityEditor.VFX;
+//using UnityEditor.VFX.UI;
 
 public class OrbScript : MonoBehaviour
 {
