@@ -86,6 +86,7 @@ public class Aim_And_Shoot : MonoBehaviour
     }
     private void ShootBlade(){
         if(IsAiming && Input.GetKeyDown(KeyCode.Mouse0) && !IsBlading){
+            Debug.Log("works?");
             IsAiming = false;
             IsBlading = true;
             FindObjectOfType<Blade_Controller>().StartCoroutine("BladeForm");

@@ -22,6 +22,7 @@ public class Blade_Controller : MonoBehaviour
     public float BladeRotationSmoothing = 5f;
     public GameObject FollowRoot;
     public GameObject Player;
+    public GameObject PlayerAmeture;
 
     private void Start() {
         _controller = GetComponent<CharacterController>();
@@ -52,7 +53,7 @@ public class Blade_Controller : MonoBehaviour
             FollowRoot.transform.rotation = transform.rotation;
             this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             FollowRoot.transform.rotation = transform.rotation;
-            Player.GetComponent<CharacterController>().height = Mathf.Lerp(Player.GetComponent<CharacterController>().height, 1.8f, Time.deltaTime * 20f);
+            Player.GetComponent<CharacterController>().height = Mathf.Lerp(Player.GetComponent<CharacterController>().height, 6.56f, Time.deltaTime * 20f);
         }
     }
     IEnumerator BladeForm(){
@@ -65,8 +66,8 @@ public class Blade_Controller : MonoBehaviour
         // 2nd phase: Blade time. This is where the player can move as a blade
         //=======================================================================
         for(t = 0.0f; t < BladeTime; t += Time.deltaTime){
-            _shootScript.PlayerGeo.SetActive(false);
             GetComponent<MeshCollider>().enabled = true;
+            PlayerAmeture.SetActive(false);
             GetComponent<CharacterController>().Move(transform.forward.normalized * BladeSpeed * Time.deltaTime);
             //The player character moves with the blade while invisible
             Player.transform.position = new Vector3(transform.position.x, transform.position.y - RespawnYoffset, transform.position.z);
@@ -83,7 +84,7 @@ public class Blade_Controller : MonoBehaviour
         GetComponent<MeshCollider>().enabled = false;
         GetComponent<CharacterController>().Move(Vector3.zero);
         _mesh.enabled = false;
-        _shootScript.PlayerGeo.SetActive(true);
+        PlayerAmeture.SetActive(true);
         _shootScript.AimCamera.gameObject.SetActive(false);
         _shootScript.BladeCamera.gameObject.SetActive(false);
         // locks tplayer movement for a fixed amount of time before they can
