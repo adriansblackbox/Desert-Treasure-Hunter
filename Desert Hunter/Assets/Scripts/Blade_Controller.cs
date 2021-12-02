@@ -124,9 +124,4 @@ public class Blade_Controller : MonoBehaviour
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
-    private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.layer == 9 || other.gameObject.layer == 10){
-            t = BladeTime;
-        }
-    }
 }
