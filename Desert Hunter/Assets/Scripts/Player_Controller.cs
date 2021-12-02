@@ -9,7 +9,7 @@ public class Player_Controller : MonoBehaviour
     public float JogSpeed = 2.0f;
     public float RotationSmoothTime = 1f;
     public float SpeedChangeRate = 10.0f;
-    public float MouseSensitivity = 300f;
+    public float MouseSensitivity = 200f;
 
     public bool RotateOnMoveDirection = true;
 

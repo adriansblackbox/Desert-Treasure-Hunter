@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedChangeRate: 10
-  AimSensitivity: 200
+  AimSensitivity: 100
   IsBlading: 0
   IsAiming: 0
   AimCamera: {fileID: 1297439766}
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   JogSpeed: 5
   RotationSmoothTime: 0.15
   SpeedChangeRate: 8
-  MouseSensitivity: 300
+  MouseSensitivity: 200
   RotateOnMoveDirection: 1
   CinemachineCameraTarget: {fileID: 1945619036}
   FollowCamera: {fileID: 705986386}

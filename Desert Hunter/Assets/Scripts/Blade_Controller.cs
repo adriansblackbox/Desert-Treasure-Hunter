@@ -67,7 +67,7 @@ public class Blade_Controller : MonoBehaviour
         // 2nd phase: Blade time. This is where the player can move as a blade
         //=======================================================================
         for(t = 0.0f; t < BladeTime; t += Time.deltaTime){
-            BladeTransfrom.Rotate(0.0f, 10f, 0.0f);
+            BladeTransfrom.Rotate(0.0f, 700f * Time.deltaTime, 0.0f);
             BladeCollider.enabled = true;
             PlayerAmeture.SetActive(false);
             GetComponent<CharacterController>().Move(transform.forward.normalized * BladeSpeed * Time.deltaTime);
@@ -114,7 +114,7 @@ public class Blade_Controller : MonoBehaviour
         // rotate the balde and camera accordingly
         transform.rotation = Quaternion.Euler(_bladePitchLerped, _baldeYawLerped, 0.0f);
         // smooth out rotation of the camera
-        FollowRoot.transform.rotation = Quaternion.Lerp(FollowRoot.transform.rotation, transform.rotation, Time.deltaTime * 10.0f);
+        FollowRoot.transform.rotation = Quaternion.Lerp(FollowRoot.transform.rotation, transform.rotation, Time.deltaTime * 5.0f);
     }
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
